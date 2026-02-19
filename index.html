@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InformaticsPath | Professional Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { background-color: white; color: #4338ca; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <div class="p-2 bg-white/20 rounded-lg">
+                    <i class="fas fa-bullseye fa-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">InformaticsPath</h1>
+                    <p class="text-indigo-100 text-sm">Professional Development Dashboard</p>
+                </div>
+            </div>
+            <nav class="flex space-x-1 bg-indigo-800 p-1 rounded-xl">
+                <button onclick="switchTab('roadmap')" id="btn-roadmap" class="tab-btn active px-4 py-2 rounded-lg text-sm font-medium transition-all text-indigo-100 hover:bg-indigo-600">Roadmap</button>
+                <button onclick="switchTab('certs')" id="btn-certs" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-indigo-100 hover:bg-indigo-600">Certifications</button>
+                <button onclick="switchTab('resources')" id="btn-resources" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-indigo-100 hover:bg-indigo-600">Resources</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Intro -->
+        <section class="mb-10 text-center">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-2">Build Your Informatics Career</h2>
+            <p class="text-slate-600 max-w-2xl mx-auto mb-6">Bridging the gap between clinical care and data science. Track your growth and stay updated on industry standards.</p>
+        </section>
+
+        <!-- Tab: Roadmap -->
+        <div id="roadmap" class="tab-content active">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl mb-4"><i class="fas fa-database"></i></div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-600">Essential</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Health Data Standards</h3>
+                    <p class="text-slate-600 leading-relaxed">Master HL7, FHIR, and DICOM protocols for interoperability.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl mb-4"><i class="fas fa-stethoscope"></i></div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-600">Core</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Clinical Workflow</h3>
+                    <p class="text-slate-600 leading-relaxed">Understanding how healthcare providers interact with technology in practice.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl mb-4"><i class="fas fa-chart-line"></i></div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-600">Priority</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Data Analytics & SQL</h3>
+                    <p class="text-slate-600 leading-relaxed">Querying electronic health record (EHR) databases to extract insights.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start justify-between">
+                        <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl mb-4"><i class="fas fa-shield-halved"></i></div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-red-600">Mandatory</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Compliance (HIPAA)</h3>
+                    <p class="text-slate-600 leading-relaxed">Deep dive into HIPAA, GDPR, and health data privacy laws.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Certs -->
+        <div id="certs" class="tab-content">
+            <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl mb-6 flex items-center text-indigo-800">
+                <i class="fas fa-award mr-3"></i>
+                <p class="text-sm font-medium">Most professionals start with CAHIMS then move to CPHIMS after experience.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex bg-white p-5 rounded-2xl border border-slate-100 items-center">
+                    <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold mr-4">C</div>
+                    <div>
+                        <h3 class="font-bold">CPHIMS (HIMSS)</h3>
+                        <p class="text-sm text-slate-500">Certified Professional in Healthcare Info Management.</p>
+                    </div>
+                </div>
+                <div class="flex bg-white p-5 rounded-2xl border border-slate-100 items-center">
+                    <div class="w-12 h-12 bg-slate-600 text-white rounded-full flex items-center justify-center font-bold mr-4">A</div>
+                    <div>
+                        <h3 class="font-bold">CHDA (AHIMA)</h3>
+                        <p class="text-sm text-slate-500">Certified Health Data Analyst specialist.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Resources -->
+        <div id="resources" class="tab-content">
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 divide-y divide-slate-100 overflow-hidden">
+                <a href="https://www.himss.org" target="_blank" class="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors group">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-link text-slate-400 group-hover:text-indigo-600"></i>
+                        <div>
+                            <p class="font-bold text-slate-800">HIMSS Portal</p>
+                            <p class="text-xs text-slate-400 uppercase">Networking</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-external-link-alt text-slate-300"></i>
+                </a>
+                <a href="https://amia.org" target="_blank" class="flex items-center justify-between p-6 hover:bg-slate-50 transition-colors group">
+                    <div class="flex items-center space-x-4">
+                        <i class="fas fa-book text-slate-400 group-hover:text-indigo-600"></i>
+                        <div>
+                            <p class="font-bold text-slate-800">AMIA Association</p>
+                            <p class="text-xs text-slate-400 uppercase">Research</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-external-link-alt text-slate-300"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto px-4 pb-12 mt-12">
+        <div class="bg-slate-900 rounded-3xl p-8 text-white">
+            <h4 class="text-xl font-bold mb-2 flex items-center">
+                <i class="far fa-clock mr-2 text-indigo-400"></i> Industry Trend
+            </h4>
+            <p class="text-slate-400">Generative AI in EHR systems is the most requested skill in 2024. Explore NLP for clinical documentation.</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
