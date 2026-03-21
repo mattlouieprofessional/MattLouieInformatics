@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Researcher Profile | Cyber Security</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8; /* Cyber Blue */
+            --accent-secondary: #10b981; /* Success Green */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-item {
+            background: #334155;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>[Matthew Louie]</h1>
+    <p>Undergraduate Research Assistant | Cybersecurity Analyst</p>
+    <div style="margin-top: 1rem;">
+        <span class="badge">B.S. Information Systems</span>
+        <span class="badge">Network Security</span>
+    </div>
+</header>
+
+<div class="container">
+    
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I am an undergraduate researcher focused on the application of AI learning tools to detect and apply solutions to those with mental health disorders and poor sleep schedules. 
+            With a background in <strong>Cybersecurity and Information Systems</strong>, I apply a 
+            analytical mindset to research methodologies, ensuring data integrity and robust 
+            experimental frameworks.
+        </p>
+    </section>
+
+    <section id="research">
+        <h2>Current Research</h2>
+        <div class="card">
+            <h3>Project Title: [USing AI to Find Correlation Between Sleep Cycles and Mental Health Disorders]</h3>
+            <p>My research is focused on finding different ways to detect and analyze mental health disorders by tracking REM and NREM sleep cycles and using AI Machine learning to create diagnosises.</p>
+            <ul class="skill-list">
+                <li class="skill-item">Research Devleopment</li>
+                <li class="skill-item">Data Privacy</li>
+                <li class="skill-item">Python</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Arsenal</h2>
+        <div class="card">
+            <p><strong>Security:</strong> Policy Enforcement, Network Troubleshooting, Defensive Security.</p>
+            <p><strong>Development:</strong> Python, PowerShell, Bash, SQL.</p>
+            <p><strong>Environment:</strong> Linux (WSL), Windows Enterprise.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Interested in collaborating or discussing research? Reach out via the links below:</p>
+        <p>
+            Email: <a href="mailto:mlouie1@asu.edu">mlouie1@email.edu</a> | 
+            <a href="#">LinkedIn</a> | 
+            <a href="#">GitHub</a>
+        </p>
+    </section>
+
+</div>
+
+<footer>
+    &copy; 2026 [Matthew Louie]. Built for Academic Research.
+</footer>
+
+</body>
+</html>
