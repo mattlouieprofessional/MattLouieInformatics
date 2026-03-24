@@ -3,215 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATTHEW LOUIE // Undergraduate Researcher | Information Systems Technician</title>
+    <title>Matthew Louie | Systems Interface</title>
     <style>
         :root {
             --bg: #010811;
             --navy: #0a192f;
             --accent: #38bdf8;
             --text: #e6f1ff;
-            --glass: rgba(17, 34, 64, 0.8);
+            --card: #112240;
         }
 
         * { box-sizing: border-box; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         body, html {
-            height: 100%;
-            margin: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            overflow: hidden; /* We handle the "scroll" via JS */
+            height: 100%; margin: 0; background-color: var(--bg);
+            color: var(--text); font-family: 'Inter', sans-serif; overflow: hidden;
         }
 
-        /* Full Screen Pages */
+        /* PAGE SYSTEM */
         .page {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            left: 0;
+            height: 100vh; width: 100vw; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; position: absolute; top: 0; left: 0;
             padding: 20px;
         }
 
-        /* PAGE 1: SPLASH SCREEN */
-        #splash {
-            z-index: 2;
-            background: linear-gradient(to bottom, var(--bg), var(--navy));
-        }
-
-        .intro-box {
-            text-align: center;
-            border-left: 2px solid var(--accent);
-            padding: 20px 40px;
-        }
-
-        h1 { font-size: 3rem; margin: 0; letter-spacing: -1px; }
-        .bio-line { font-family: monospace; color: var(--accent); margin-top: 10px; font-size: 1.1rem; }
-
-        .swipe-indicator {
-            position: absolute;
-            bottom: 40px;
-            text-align: center;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* PAGE 2: DASHBOARD */
-        #dashboard {
-            z-index: 1;
-            transform: translateY(100%);
-            background: var(--bg);
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: auto 1fr 1fr;
-            gap: 15px;
-            padding: 40px 20px;
-        }
-
-        .dash-header {
-            grid-column: span 2;
-            text-align: left;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-        }
-
-        /* Interactive Boxes */
-        .box {
-            background: var(--glass);
-            border: 1px solid var(--navy);
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        .box:hover {
-            border-color: var(--accent);
-            background: var(--navy);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-        }
-
-        .box h3 { font-family: monospace; font-size: 1.2rem; margin: 0; }
-        .box p { font-size: 0.7rem; opacity: 0.6; margin-top: 5px; text-transform: uppercase; }
-
-        /* Expandable Modal Logic */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(1, 8, 17, 0.95);
-            z-index: 100;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .modal-content { max-width: 600px; margin: 0 auto; }
-        .close-btn { color: var(--accent); cursor: pointer; font-family: monospace; margin-bottom: 20px; display: block; }
-
-        /* Active classes for JS */
+        #splash { z-index: 10; background: var(--bg); border-bottom: 2px solid var(--accent); }
+        #main-dashboard { z-index: 5; transform: translateY(100%); background: var(--bg); }
+        
+        /* Transition Trigger */
         .unlocked #splash { transform: translateY(-100%); }
-        .unlocked #dashboard { transform: translateY(0); }
+        .unlocked #main-dashboard { transform: translateY(0); }
 
+        /* TYPOGRAPHY */
+        .intro-box { text-align: center; border-left: 3px solid var(--accent); padding: 10px 30px; }
+        h1 { font-size: 3rem; margin: 0; letter-spacing: -2px; }
+        .bio-line { font-family: monospace; color: var(--accent); font-size: 1rem; margin-top: 5px; }
+
+        /* GRID & BOXES */
+        .grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 15px; width: 100%; max-width: 600px;
+        }
+
+        .box {
+            background: var(--card); border: 1px solid var(--navy); border-radius: 4px;
+            padding: 30px 10px; cursor: pointer; text-align: center;
+            font-family: monospace; font-weight: bold; letter-spacing: 1px;
+        }
+
+        .box:hover { border-color: var(--accent); background: var(--navy); box-shadow: 0 0 15px var(--accent); }
+
+        /* SUB-SCREEN MODAL */
+        .sub-screen {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); z-index: 20; padding: 40px 20px; overflow-y: auto;
+            flex-direction: column; align-items: center;
+        }
+
+        .back-btn { color: var(--accent); cursor: pointer; margin-bottom: 30px; font-family: monospace; align-self: flex-start; }
+
+        .detail-card {
+            background: #0a192f; border-left: 4px solid var(--accent);
+            padding: 20px; margin-top: 20px; width: 100%; max-width: 600px;
+            display: none; animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .swipe-hint {
+            position: absolute; bottom: 30px; font-family: monospace; 
+            color: var(--accent); animation: pulse 2s infinite; cursor: pointer;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
     </style>
 </head>
-<body id="body">
+<body id="main-body">
 
     <section id="splash" class="page">
         <div class="intro-box">
             <h1>MATTHEW LOUIE</h1>
             <div class="bio-line">UNDERGRADUATE RESEARCHER || INFORMATION SYSTEMS TECHNICIAN</div>
         </div>
-        <div class="swipe-indicator" onclick="unlock()">
-            <div style="font-size: 0.8rem; font-family: monospace; margin-bottom: 10px;">CLICK HERE</div>
-            <div style="font-size: 2rem;">↑</div>
+        <div class="swipe-hint" onclick="unlock()"> CLICK HERE </div>
+    </section>
+
+    <section id="main-dashboard" class="page">
+        <h2 style="font-family: monospace; margin-bottom: 30px;">// SELECT</h2>
+        <div class="grid">
+            <div class="box" onclick="openSub('navy-sub')">NAVY CAREER</div>
+            <div class="box" onclick="openSub('res-sub')">RESEARCH</div>
+            <div class="box" onclick="openSub('edu-sub')">EDUCATION</div>
+            <div class="box" onclick="openSub('con-sub')">CONTACT ME</div>
         </div>
     </section>
 
-    <section id="dashboard" class="page">
-        <div class="dash-header">
-            <div style="font-family: monospace; color: var(--accent); font-size: 0.8rem;">DASHBOARD</div>
+    <div id="navy-sub" class="sub-screen">
+        <div class="back-btn" onclick="closeSub('navy-sub')">← RETURN TO MAIN</div>
+        <h2 style="font-family: monospace;">MILITARY OPERATIONS</h2>
+        <div class="grid">
+            <div class="box" onclick="showDetail('n1')">IT LEAD</div>
+            <div class="box" onclick="showDetail('n2')"> MHS NETWORK ROLLOUT</div>
+            <div class="box" onclick="showDetail('n3')">SPACECOM</div>
         </div>
+        <div id="n1" class="detail-card"><strong>IT Helpdesk Lead:</strong> Lead technician for 150+ personnel department. Managed multi-platform support and security compliance.</div>
+        <div id="n2" class="detail-card"><strong>Infrastructure Rollout:</strong> Operations manager for network hardware and fiber optic installation across multiple leadership tiers.</div>
+        <div id="n3" class="detail-card"><strong>SPACECOM</strong> Monitored classified networks and managed encrypted VTC telecommunications for Space Command.</div>
+    </div>
 
-        <div class="box" onclick="openModal('edu')">
-            <h3>EDUCATION</h3>
-            <p></p>
+    <div id="res-sub" class="sub-screen">
+        <div class="back-btn" onclick="closeSub('res-sub')">← RETURNT TO MAIN</div>
+        <h2 style="font-family: monospace;">HEALTH INFORMATICS RESEARCH</h2>
+        <div class="grid">
+            <div class="box" onclick="showDetail('r1')">Analyze Correlation between sleep cycles and mental health disorders</div>
+            <div class="box" onclick="showDetail('r2')">IMPACT LAB</div>
         </div>
-
-        <div class="box" onclick="openModal('navy')">
-            <h3>NAVY CAREER</h3>
-            <p></p>
-        </div>
-
-        <div class="box" onclick="openModal('research')">
-            <h3>RESEARCH</h3>
-            <p></p>
-           
-        </div>
-
-        <div class="box" onclick="openModal('contact')">
-            <h3>CONTACT ME</h3>
-           <p></p>
-        </div>
-    </section>
-
-    <div id="modal" class="modal">
-        <span class="close-btn" onclick="closeModal()">[ BACK TO MENU ]</span>
-        <div id="modal-body" class="modal-content"></div>
+        <div id="r1" class="detail-card"><strong>Sleep/Mental Health:</strong> Analyzing REM/NREM cycles to identify biomarkers for mental health disorders.</div>
+        <div id="r2" class="detail-card"><strong>Local Models:</strong> Building Python/Bash scripts to process neuroscience data locally for maximum privacy.</div>
     </div>
 
     <script>
-        // HANDLE SWIPE / UNLOCK
+        // SWIPE TO UNLOCK
         let startY;
         document.addEventListener('touchstart', e => startY = e.touches[0].pageY);
         document.addEventListener('touchend', e => {
             if(startY - e.changedTouches[0].pageY > 50) unlock();
         });
+        function unlock() { document.getElementById('main-body').classList.add('unlocked'); }
 
-        function unlock() {
-            document.getElementById('body').classList.add('unlocked');
-        }
+        // NAVIGATION
+        function openSub(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeSub(id) { document.getElementById(id).style.display = 'none'; }
 
-        // HANDLE MODALS
-        const data = {
-            edu: "<h2>Education</h2><p><strong>B.S. Information Systems with a certificate in Applied Business Database Analytics</strong><br>Focused on Business Data Integration and Systems Analysis.</p><ul><li>Data Security</li><li>Systems Design</li><li>Business Processes</li></ul>",
-            navy: "<h2>Navy Roles</h2> <details>
-    <summary>MHS Operations Manager</summary>
-    <div class="exp-content">Oversight for MHS Network Rollout. Managed relations between departments, coordinated logistic and communication, established technical connections.</div>,
-           <summary>Information Helpdesk Lead</summary>
-    <div class="exp-content">Served as the Lead Technician for a 150-person department, overseeing cross-departmental support and ensuring 100% mission-critical system uptime..</div>,
-            research: <summary>Analyzing correlation between sleep schedules and mental health disorders</summary>
-        =   <div class="exp-content">.</div>"<h2>Developing local machine learning models to analyze the correlation between REM/NREM sleep cycles and mental health disorders such as anxiety and PTSD.</p>
-                <p> </p>"
-                <summary>IMPACT LAB at SCAI</summary>
-    <div class="exp-content">Currently working on projects to include health informatics in business applications for Dr. Sandeep Gupta's IMAPCT LAB at School of Computing and Augmented Intelligence ASU.</div>,
-            contact: "<h2>Contact</h2><p>Looking for More? Please reach out at the links below.</p><p>Email: <a href='mailto:mlouie1@asu.edu'>mlouie1@asu.edu</a></p><p><a href='https://www.https://www.linkedin.com/in/matthewlouieprofessional/' target='_blank'>LinkedIn</a> // <a href='https://github.com' target='_blank'>GitHub</a></p>"
-        };
-
-        function openModal(key) {
-            document.getElementById('modal-body').innerHTML = data[key];
-            document.getElementById('modal').style.display = 'block';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
+        // DETAIL TOGGLE
+        function showDetail(id) {
+            document.querySelectorAll('.detail-card').forEach(d => d.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
         }
     </script>
 </body>
