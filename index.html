@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Researcher Profile | Cyber Security</title>
+    <title>Matthew Louie | Systems & Informatics</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -12,6 +12,11 @@
             --text-dim: #94a3b8;
             --accent: #38bdf8; /* Cyber Blue */
             --accent-secondary: #10b981; /* Success Green */
+        }
+
+        /* TIP 3: Smooth scrolling for better UX */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -62,13 +67,16 @@
             padding: 1.5rem;
             border-radius: 8px;
             margin-bottom: 1rem;
-            transition: transform 0.2s;
+            transition: all 0.3s ease; /* Smooth transition for hover */
             border: 1px solid transparent;
         }
 
+        /* TIP 4: Interactive Hover State */
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
+            background-color: #1e2e4a;
+            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
         }
 
         .skill-list {
@@ -86,11 +94,26 @@
             font-size: 0.85rem;
         }
 
+        /* TIP 1: Blinking Cursor Animation */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: var(--accent);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
             color: var(--text-dim);
             font-size: 0.9rem;
+            border-top: 1px solid var(--card-bg);
         }
 
         a {
@@ -105,12 +128,16 @@
 </head>
 <body>
 
+<div style="position: fixed; top: 10px; right: 10px; font-family: monospace; font-size: 0.7rem; color: rgba(56, 189, 248, 0.1); pointer-events: none; z-index: 1000;">
+    STATUS: UNDERGRAD STUDENT // RESEARCH ASSISTANT
+</div>
+
 <header>
     <h1>Matthew Louie</h1>
-    <p>Undergraduate Research Assistant | Information Sytstems Technician</p>
+    <p>Undergraduate Research Assistant | Information Systems Technician<span class="cursor">&nbsp;</span></p>
     <div style="margin-top: 1rem;">
         <span class="badge">B.S. Information Systems</span>
-        <span class="badge"> Neuroscience Research</span>
+        <span class="badge">Neuroscience Research</span>
     </div>
 </header>
 
@@ -129,10 +156,10 @@
     <section id="research">
         <h2>Current Research</h2>
         <div class="card">
-            <h3>Project Title: Using AI to Find Correlation Between Sleep Cycles and Mental Health Disorders</h3>
-            <p>My research is focused on finding different ways to detect and analyze mental health disorders by tracking REM and NREM sleep cycles and using AI Machine learning to create diagnosises.</p>
+            <h3>Project: AI-Driven Correlation Between Sleep Cycles & Mental Health</h3>
+            <p>My research focuses on tracking REM and NREM sleep cycles to detect and analyze mental health disorders, utilizing Machine Learning models to assist in diagnostic frameworks.</p>
             <ul class="skill-list">
-                <li class="skill-item">Research Devleopment</li>
+                <li class="skill-item">Research Development</li>
                 <li class="skill-item">Data Privacy</li>
                 <li class="skill-item">Machine Learning</li>
             </ul>
@@ -142,8 +169,8 @@
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="card">
-            <p><strong>Security:</strong> Policy Enforcement, Network Troubleshooting, Defensive Security.</p>
-            <p><strong>Development:</strong> Python, PowerShell, Bash.</p>
+        <p><strong>Practical:</strong> Policy Enforcement, Server Troubleshooting, Research Skills.</p>
+            <p><strong>Development:</strong> Python, PowerShell, Bash Scripting.</p>
             <p><strong>Environment:</strong> Linux (WSL), Windows Enterprise.</p>
         </div>
     </section>
@@ -152,17 +179,16 @@
         <h2>Contact</h2>
         <p>Interested in collaborating or discussing research? Reach out via the links below:</p>
         <p>
-            Email: <a href="mailto:mlouie1@asu.edu">mlouie1@email.edu</a> | 
-            Linked In: <a href="https://www.linkedin.com/in/matthewlouieprofessional/
-">LinkedIn</a> | 
-          GitHub:  <a href="https://github.com/mattlouieprofessional/MattLouieInformatics">GitHub</a>
+            Email: <a href="mailto:mlouie1@asu.edu">mlouie1@asu.edu</a> | 
+            <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank">GitHub</a>
         </p>
     </section>
 
 </div>
 
 <footer>
-    &copy; 2026 Matthew Louie. Built for Academic Research.
+    [STATUS: ONLINE] // &copy; 2026 Matthew Louie. Built for Academic Research.
 </footer>
 
 </body>
