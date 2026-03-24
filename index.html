@@ -3,262 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew Louie</title>
+    <title>MATTHEW LOUIE // Undergraduate Researcher | Information Systems Technician</title>
     <style>
         :root {
             --bg: #010811;
             --navy: #0a192f;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
             --text: #e6f1ff;
-            --glass: rgba(17, 34, 64, 0.7);
+            --glass: rgba(17, 34, 64, 0.8);
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
 
         body, html {
             height: 100%;
             margin: 0;
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            overflow: hidden; /* Fills screen, no scroll */
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow: hidden; /* We handle the "scroll" via JS */
         }
 
-        /* Background Grid Animation */
-        body::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background-image: 
-                linear-gradient(var(--navy) 1px, transparent 1px),
-                linear-gradient(90deg, var(--navy) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: grid-move 20s linear infinite;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        @keyframes grid-move {
-            from { background-position: 0 0; }
-            to { background-position: 0 50px; }
-        }
-
-        /* Full Screen Layout */
-        .main-wrapper {
-            display: flex;
-            flex-direction: column;
+        /* Full Screen Pages */
+        .page {
             height: 100vh;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        /* Header / HUD */
-        .hud-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--accent);
-            background: var(--glass);
-            padding: 15px 30px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .identity h1 { margin: 0; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent); }
-        .identity span { font-family: monospace; font-size: 0.8rem; color: var(--text); opacity: 0.7; }
-
-        /* Main Interaction Area */
-        .content-container {
-            flex: 1;
-            display: flex;
-            gap: 20px;
-        }
-
-        /* Sidebar Navigation */
-        .side-nav {
-            width: 250px;
+            width: 100vw;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
         }
 
-        .nav-btn {
+        /* PAGE 1: SPLASH SCREEN */
+        #splash {
+            z-index: 2;
+            background: linear-gradient(to bottom, var(--bg), var(--navy));
+        }
+
+        .intro-box {
+            text-align: center;
+            border-left: 2px solid var(--accent);
+            padding: 20px 40px;
+        }
+
+        h1 { font-size: 3rem; margin: 0; letter-spacing: -1px; }
+        .bio-line { font-family: monospace; color: var(--accent); margin-top: 10px; font-size: 1.1rem; }
+
+        .swipe-indicator {
+            position: absolute;
+            bottom: 40px;
+            text-align: center;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* PAGE 2: DASHBOARD */
+        #dashboard {
+            z-index: 1;
+            transform: translateY(100%);
+            background: var(--bg);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto 1fr 1fr;
+            gap: 15px;
+            padding: 40px 20px;
+        }
+
+        .dash-header {
+            grid-column: span 2;
+            text-align: left;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Interactive Boxes */
+        .box {
             background: var(--glass);
             border: 1px solid var(--navy);
-            color: var(--text);
-            padding: 20px;
-            text-align: left;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            font-family: monospace;
-            transition: all 0.3s;
-            border-radius: 4px;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--accent);
-            color: var(--bg);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateX(10px);
-        }
-
-        /* Info Display Window */
-        .display-window {
-            flex: 1;
-            background: var(--glass);
-            border: 1px solid var(--accent);
-            border-radius: 4px;
-            padding: 40px;
             position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .box:hover {
+            border-color: var(--accent);
+            background: var(--navy);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .box h3 { font-family: monospace; font-size: 1.2rem; margin: 0; }
+        .box p { font-size: 0.7rem; opacity: 0.6; margin-top: 5px; text-transform: uppercase; }
+
+        /* Expandable Modal Logic */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(1, 8, 17, 0.95);
+            z-index: 100;
+            padding: 40px;
             overflow-y: auto;
         }
 
-        .view-content { display: none; animation: slideIn 0.4s ease-out; }
-        .view-content.active { display: block; }
+        .modal-content { max-width: 600px; margin: 0 auto; }
+        .close-btn { color: var(--accent); cursor: pointer; font-family: monospace; margin-bottom: 20px; display: block; }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Interactive Collapsibles */
-        details {
-            background: rgba(2, 12, 27, 0.8);
-            border: 1px solid var(--navy);
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 4px;
-        }
-
-        summary {
-            cursor: pointer;
-            color: var(--accent);
-            font-weight: bold;
-            font-family: monospace;
-            outline: none;
-        }
-
-        /* Footer / Status Bar */
-        .status-bar {
-            margin-top: 20px;
-            background: var(--navy);
-            padding: 10px 30px;
-            font-family: monospace;
-            font-size: 0.75rem;
-            display: flex;
-            justify-content: space-between;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-        a:hover { border-bottom: 1px solid var(--accent); }
+        /* Active classes for JS */
+        .unlocked #splash { transform: translateY(-100%); }
+        .unlocked #dashboard { transform: translateY(0); }
 
     </style>
 </head>
-<body>
+<body id="body">
 
-<div class="main-wrapper">
-    <header class="hud-header">
-        <div class="identity">
+    <section id="splash" class="page">
+        <div class="intro-box">
             <h1>MATTHEW LOUIE</h1>
-            <span>Undergraduate Student Researcher | Information Systems Technician</span>
+            <div class="bio-line">UNDERGRADUATE RESEARCHER // INFO SYSTEMS TECHNICIAN</div>
         </div>
-        <div style="text-align: right;">
-            <div style="font-size: 0.7rem;">AUTH_LEVEL: E-5_IT2</div>
-            <div style="color: var(--accent); font-family: monospace;" id="clock">00:00:00</div>
+        <div class="swipe-indicator" onclick="unlock()">
+            <div style="font-size: 0.8rem; font-family: monospace; margin-bottom: 10px;">SWIPE UP</div>
+            <div style="font-size: 2rem;">↑</div>
         </div>
-    </header>
+    </section>
 
-    <div class="content-container">
-        <nav class="side-nav">
-            <button class="nav-btn active" onclick="showTab('tab-bio', this)">[ 01 OVERVIEW ]</button>
-            <button class="nav-btn" onclick="showTab('tab-navy', this)">[ 02 EDUCTAION ]</button>
-            <button class="nav-btn" onclick="showTab('tab-research', this)">[ 03 MILITARY BACKGROUND ]</button>
-            <button class="nav-btn" onclick="showTab('tab-tech', this)">[ 04 RESEARCH ]</button>
-            <button class="nav-btn" onclick="showTab('tab-comms', this)">[ 05 CONTACT ME ]</button>
-        </nav>
+    <section id="dashboard" class="page">
+        <div class="dash-header">
+            <div style="font-family: monospace; color: var(--accent); font-size: 0.8rem;">DASHBOARD</div>
+        </div>
 
-        <main class="display-window">
-            <div id="tab-bio" class="view-content active">
-                <h2 style="color: var(--accent); border-bottom: 1px solid var(--accent);">SYSTEM PROFILE</h2>
-                <p>Undergraduate student researcher and Informations Systems Technician. I apply a cybersecurity mindset to medical research data integrity.</p>
-                <details>
-                    <summary>ACADEMIC DATA EXPAND</summary>
-                    <p style="padding-top:10px; color: var(--text);">Pursuing B.S. in Computer Information Systems paired with a certifiacte in Applied Business Database Analytics. Skills include business analytics, process management, data analytics.</p>
-                </details>
-            </div>
+        <div class="box" onclick="openModal('edu')">
+            <h3>EDUCATION</h3>
+            <p>Academic Credentials</p>
+        </div>
 
-            <div id="tab-navy" class="view-content">
-                <h2 style="color: var(--accent);">NAVY CAREER</h2>
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <span style="border: 1px solid var(--accent); padding: 5px; font-size: 0.7rem;">SPACECOM_SUPPORT</span>
-                    <span style="border: 1px solid var(--accent); padding: 5px; font-size: 0.7rem;">FIBER_INFRASTRUCTURE</span>
-                </div>
-                <details>
-                    <summary>NETWORK_ROLLOUT_LOGS</summary>
-                    <p>Coordinated logistics and physical installation for 150+ personnel. Ensured mission-critical hardware processing and secure system handover.</p>
-                </details>
-                <details>
-                    <summary>VTC_ENCRYPTION_OPS</summary>
-                    <p>Managed classified Video Teleconferencing systems across NIPR/SIPR networks. Continuous monitoring of secure assets for SPACECOM mission sets.</p>
-                </details>
-            </div>
+        <div class="box" onclick="openModal('navy')">
+            <h3>NAVY CAREER</h3>
+            <p>E-5 Navy Reserves Information Systems Technician. As an Information Systems Tech I have had many different roles and resposibilities to include: Operations Management</p>
+        </div>
 
-            <div id="tab-research" class="view-content">
-                <h2 style="color: var(--accent);">HEALTH_INFORMATICS</h2>
-                <p>Primary Objective: Using Machine Learning to correlate REM/NREM sleep cycles with mental health biomarkers.</p>
-                <details>
-                    <summary>AI_METHODOLOGY</summary>
-                    <p>Deploying local LLMs in Linux environments to process large-scale neurological datasets while maintaining 100% data privacy and security.</p>
-                </details>
-            </div>
+        <div class="box" onclick="openModal('research')">
+            <h3>RESEARCH</h3>
+            <p>Project Title: Finding Correlation Between REM and NREM sleep cycles in relation to mental health disorders.</p>
+            <p> My research aims to generate data using AI Machine Learning to explore neurological disorders as it applies to sleep. My current research is sponsored by Dr. Sandeep Gupta with the IMPACT Lab at the School of Computing and Artifical Intelligence. By studying sleep cycles and EEG brain functions, we can hope to establish a correlation to prediagnose sleep disorders before they harm patients. </p>
+        </div>
 
-            <div id="tab-tech" class="view-content">
-                <h2 style="color: var(--accent);">TECHNICAL SKILLS</h2>
-                <p><strong>Environment:</strong> Linux (WSL), Windows Enterprise, Cisco Networking.</p>
-                <p><strong>Automation:</strong> Bash Scripting, PowerShell, Python.</p>
-                <p><strong>ITSM:</strong> ServiceNow, IT Policy Enforcement.</p>
-            </div>
+        <div class="box" onclick="openModal('contact')">
+            <h3>CONTACT ME</h3>
+            <p>Want to connect with me? Reach out below to find out more information or to ask any questions! I am always eager to make connections and create new opportunities.</p>
+        </div>
+    </section>
 
-            <div id="tab-CONNECT WITH ME" class="view-content">
-                <h2 style="color: var(--accent);">ESTABLISH_CONNECTION</h2>
-                <p>Ready for collaboration on Informatics or Systems Security projects.</p>
-                <p>> EMAIL: <a href="mailto:mlouie1@asu.edu">mlouie1@asu.edu</a></p>
-                <p>> LINKEDIN: <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank">Matthew Louie</a></p>
-                <p>> GITHUB: <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank">mattlouieprofessional</a></p>
-            </div>
-        </main>
+    <div id="modal" class="modal">
+        <span class="close-btn" onclick="closeModal()">[ BACK TO MENU ]</span>
+        <div id="modal-body" class="modal-content"></div>
     </div>
 
-    <footer class="status-bar">
-        <div>LOCATION: TEMPE_AZ // STATUS: ACTIVE</div>
-        <div>UPLINK_STABLE // &copy; 2026 MATTHEW LOUIE</div>
-    </footer>
-</div>
+    <script>
+        // HANDLE SWIPE / UNLOCK
+        let startY;
+        document.addEventListener('touchstart', e => startY = e.touches[0].pageY);
+        document.addEventListener('touchend', e => {
+            if(startY - e.changedTouches[0].pageY > 50) unlock();
+        });
 
-<script>
-    // Tab Switching Logic
-    function showTab(tabId, btn) {
-        document.querySelectorAll('.view-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        btn.classList.add('active');
-    }
+        function unlock() {
+            document.getElementById('body').classList.add('unlocked');
+        }
 
-    // Live HUD Clock
-    function updateClock() {
-        const now = new Date();
-        document.getElementById('clock').innerText = now.toTimeString().split(' ')[0];
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-</script>
+        // HANDLE MODALS
+        const data = {
+            edu: "<h2>Education</h2><p><strong>B.S. Information Systems</strong><br>Focused on Business Data Integration and Systems Analysis.</p><ul><li>Data Security</li><li>Systems Design</li><li>Health Informatics</li></ul>",
+            navy: "<h2>Navy Career // E-5</h2><p>Information Systems Technician (IT2) specializing in secure infrastructure.</p><ul><li>SPACECOM Monitoring</li><li>Fiber Optic Network Rollout</li><li>Classified VTC Comms</li></ul>",
+            research: "<h2>Research</h2><p><strong>Neuroscience Health Informatics</strong></p><p>Developing local LLM frameworks to analyze the correlation between REM/NREM sleep cycles and mental health biomarkers.</p>",
+            contact: "<h2>Contact</h2><p>Ready for collaboration.</p><p>Email: <a href='mailto:mlouie1@asu.edu'>mlouie1@asu.edu</a></p><p><a href='https://www.https://www.linkedin.com/in/matthewlouieprofessional/' target='_blank'>LinkedIn</a> // <a href='https://github.com' target='_blank'>GitHub</a></p>"
+        };
 
+        function openModal(key) {
+            document.getElementById('modal-body').innerHTML = data[key];
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
