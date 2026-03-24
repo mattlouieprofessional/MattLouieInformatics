@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew Louie | Systems Interface</title>
+    <title>Matthew Louie | Interface</title>
     <style>
         :root {
             --bg: #010811;
@@ -20,121 +20,119 @@
             color: var(--text); font-family: 'Inter', sans-serif; overflow: hidden;
         }
 
-        /* PAGE SYSTEM */
-        .page {
+        /* PAGE 1: SPLASH */
+        #splash {
             height: 100vh; width: 100vw; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; position: absolute; top: 0; left: 0;
-            padding: 20px;
+            justify-content: center; align-items: center; position: fixed;
+            top: 0; left: 0; z-index: 100; background: var(--bg);
         }
 
-        #splash { z-index: 10; background: var(--bg); border-bottom: 2px solid var(--accent); }
-        #main-dashboard { z-index: 5; transform: translateY(100%); background: var(--bg); }
-        
-        /* Transition Trigger */
+        /* PAGE 2: DASHBOARD */
+        #main-dashboard {
+            height: 100vh; width: 100vw; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; position: fixed;
+            top: 0; left: 0; z-index: 50; background: var(--bg);
+            transform: translateY(100%); /* Start off-screen at bottom */
+        }
+
+        /* Transition Trigger - Moves splash up, pulls dashboard up */
         .unlocked #splash { transform: translateY(-100%); }
         .unlocked #main-dashboard { transform: translateY(0); }
 
-        /* TYPOGRAPHY */
         .intro-box { text-align: center; border-left: 3px solid var(--accent); padding: 10px 30px; }
-        h1 { font-size: 3rem; margin: 0; letter-spacing: -2px; }
-        .bio-line { font-family: monospace; color: var(--accent); font-size: 1rem; margin-top: 5px; }
+        h1 { font-size: 3rem; margin: 0; }
 
-        /* GRID & BOXES */
         .grid {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 15px; width: 100%; max-width: 600px;
+            gap: 15px; width: 90%; max-width: 600px;
         }
 
         .box {
             background: var(--card); border: 1px solid var(--navy); border-radius: 4px;
-            padding: 30px 10px; cursor: pointer; text-align: center;
-            font-family: monospace; font-weight: bold; letter-spacing: 1px;
+            padding: 30px 10px; cursor: pointer; text-align: center; font-family: monospace;
         }
 
-        .box:hover { border-color: var(--accent); background: var(--navy); box-shadow: 0 0 15px var(--accent); }
+        .box:hover { border-color: var(--accent); background: var(--navy); }
 
-        /* SUB-SCREEN MODAL */
+        /* PROJECT SUB-SCREENS */
         .sub-screen {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); z-index: 20; padding: 40px 20px; overflow-y: auto;
-            flex-direction: column; align-items: center;
+            background: var(--bg); z-index: 200; padding: 40px 20px; flex-direction: column; align-items: center;
         }
-
-        .back-btn { color: var(--accent); cursor: pointer; margin-bottom: 30px; font-family: monospace; align-self: flex-start; }
 
         .detail-card {
             background: #0a192f; border-left: 4px solid var(--accent);
             padding: 20px; margin-top: 20px; width: 100%; max-width: 600px;
-            display: none; animation: fadeIn 0.3s ease;
+            display: none; 
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .swipe-hint {
-            position: absolute; bottom: 30px; font-family: monospace; 
-            color: var(--accent); animation: pulse 2s infinite; cursor: pointer;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        .back-btn { color: var(--accent); cursor: pointer; margin-bottom: 20px; font-family: monospace; }
+        .swipe-hint { position: absolute; bottom: 40px; color: var(--accent); cursor: pointer; font-family: monospace; }
     </style>
 </head>
 <body id="main-body">
 
-    <section id="splash" class="page">
+    <section id="splash">
         <div class="intro-box">
             <h1>MATTHEW LOUIE</h1>
-            <div class="bio-line">UNDERGRADUATE RESEARCHER || INFORMATION SYSTEMS TECHNICIAN</div>
+            <div style="color: var(--accent); font-family: monospace;">UNDERGRADUATE RESEARCHER // IT SPECIALIST</div>
         </div>
-        <div class="swipe-hint" onclick="unlock()"> CLICK HERE </div>
+        <div class="swipe-hint" onclick="unlock()">[ CLICK HERE OR SWIPE UP ]</div>
     </section>
 
-    <section id="main-dashboard" class="page">
-        <h2 style="font-family: monospace; margin-bottom: 30px;">// SELECT</h2>
+    <section id="main-dashboard">
+        <h2 style="font-family: monospace; margin-bottom: 30px;">// DOMAIN_SELECT</h2>
         <div class="grid">
             <div class="box" onclick="openSub('navy-sub')">NAVY CAREER</div>
             <div class="box" onclick="openSub('res-sub')">RESEARCH</div>
             <div class="box" onclick="openSub('edu-sub')">EDUCATION</div>
-            <div class="box" onclick="openSub('con-sub')">CONTACT ME</div>
+            <div class="box" onclick="openSub('con-sub')">CONTACT</div>
         </div>
     </section>
 
     <div id="navy-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('navy-sub')">← RETURN TO MAIN</div>
-        <h2 style="font-family: monospace;">MILITARY OPERATIONS</h2>
+        <div class="back-btn" onclick="closeSub('navy-sub')">← RETURN_TO_MAIN</div>
         <div class="grid">
             <div class="box" onclick="showDetail('n1')">IT LEAD</div>
-            <div class="box" onclick="showDetail('n2')"> MHS NETWORK ROLLOUT</div>
+            <div class="box" onclick="showDetail('n2')">ROLLOUT</div>
             <div class="box" onclick="showDetail('n3')">SPACECOM</div>
         </div>
-        <div id="n1" class="detail-card"><strong>IT Helpdesk Lead:</strong> Lead technician for 150+ personnel department. Managed multi-platform support and security compliance.</div>
-        <div id="n2" class="detail-card"><strong>Infrastructure Rollout:</strong> Operations manager for network hardware and fiber optic installation across multiple leadership tiers.</div>
-        <div id="n3" class="detail-card"><strong>SPACECOM</strong> Monitored classified networks and managed encrypted VTC telecommunications for Space Command.</div>
+        <div id="n1" class="detail-card">Managed 150+ personnel IT helpdesk; supervised multi-platform support.</div>
+        <div id="n2" class="detail-card">Managed fiber rollout and hardware logistics across departments.</div>
+        <div id="n3" class="detail-card">Monitored classified systems for SPACECOM operations.</div>
     </div>
 
     <div id="res-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('res-sub')">← RETURNT TO MAIN</div>
-        <h2 style="font-family: monospace;">HEALTH INFORMATICS RESEARCH</h2>
+        <div class="back-btn" onclick="closeSub('res-sub')">← RETURN_TO_MAIN</div>
         <div class="grid">
-            <div class="box" onclick="showDetail('r1')">Analyze Correlation between sleep cycles and mental health disorders</div>
-            <div class="box" onclick="showDetail('r2')">IMPACT LAB</div>
+            <div class="box" onclick="showDetail('r1')">AI STUDY</div>
+            <div class="box" onclick="showDetail('r2')">LOCAL LLM</div>
         </div>
-        <div id="r1" class="detail-card"><strong>Sleep/Mental Health:</strong> Analyzing REM/NREM cycles to identify biomarkers for mental health disorders.</div>
-        <div id="r2" class="detail-card"><strong>Local Models:</strong> Building Python/Bash scripts to process neuroscience data locally for maximum privacy.</div>
+        <div id="r1" class="detail-card">Analyzing REM/NREM cycles for mental health biomarkers.</div>
+        <div id="r2" class="detail-card">Building Python/Bash tools for local neuroscience data analysis.</div>
     </div>
 
     <script>
-        // SWIPE TO UNLOCK
+        // FIXED UNLOCK FUNCTION
+        function unlock() {
+            document.getElementById('main-body').classList.add('unlocked');
+        }
+
+        // SWIPE DETECTION
         let startY;
         document.addEventListener('touchstart', e => startY = e.touches[0].pageY);
         document.addEventListener('touchend', e => {
             if(startY - e.changedTouches[0].pageY > 50) unlock();
         });
-        function unlock() { document.getElementById('main-body').classList.add('unlocked'); }
 
-        // NAVIGATION
+        // SUB-MENU NAVIGATION
         function openSub(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeSub(id) { document.getElementById(id).style.display = 'none'; }
+        function closeSub(id) { 
+            document.getElementById(id).style.display = 'none';
+            document.querySelectorAll('.detail-card').forEach(d => d.style.display = 'none');
+        }
 
-        // DETAIL TOGGLE
+        // PROJECT DETAILS
         function showDetail(id) {
             document.querySelectorAll('.detail-card').forEach(d => d.style.display = 'none');
             document.getElementById(id).style.display = 'block';
