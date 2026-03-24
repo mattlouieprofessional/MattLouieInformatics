@@ -18,6 +18,43 @@
         body, html {
             height: 100%; margin: 0; background-color: var(--bg);
             color: var(--text); font-family: 'Inter', sans-serif; overflow: hidden;
+            /* The Interactive Moving Grid */
+.bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%; /* Extra width for the movement */
+    height: 200%;
+    background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1; /* Puts it behind everything */
+    transform: perspective(500px) rotateX(60deg);
+    animation: grid-travel 20s linear infinite;
+}
+
+@keyframes grid-travel {
+    from { background-position: 0 0; }
+    to { background-position: 0 40px; }
+}
+
+/* Optional: Add a "Scanline" effect for that 
+   Space Command / Retro IT look */
+body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+    z-index: 999; /* Top layer, but transparent */
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none; /* So you can still click the buttons! */
+}
         }
 
         /* PAGE 1: SPLASH */
@@ -71,11 +108,11 @@
     </style>
 </head>
 <body id="main-body">
-
+<div class="bg-grid"></div>
     <section id="splash">
         <div class="intro-box">
             <h1>MATTHEW LOUIE</h1>
-            <div style="color: var(--accent); font-family: monospace;">UNDERGRADUATE RESEARCHER // IT SPECIALIST</div>
+            <div style="color: var(--accent); font-family: monospace;">UNDERGRADUATE RESEARCHER || IT SPECIALIST</div>
         </div>
         <div class="swipe-hint" onclick="unlock()"><Strong>CLICK HERE</Strong></div>
     </section>
@@ -131,7 +168,7 @@
         <div class="back-btn" onclick="closeSub('con-sub')">← RETURN TO HOMESCREEN</div>
         <h2 style="font-family: monospace;">I am always looking to connect with new individauls! Use the links below to connect:</h2>
         <div class="grid">
-            <a href="mailto:mlouie1@asu.edu" class="box" style="text-decoration: none;"><strong>EMAIL</strong></a>
+            <a href="mailto:mlouie1@asu.edu" target="_blank" class="box" style="text-decoration: none;"><strong>EMAIL</strong></a>
             <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank" class="box" style="text-decoration: none;"><strong>LINKEDIN</strong></a>
             <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank" class="box" style="text-decoration: none;"><strong>GITHUB</strong></a>
         </div>
