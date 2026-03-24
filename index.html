@@ -3,206 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew Louie | Systems & Informatics</title>
+    <title>Matthew Louie | Interactive Systems Profile</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --accent: #38bdf8; /* Cyber Blue */
-            --accent-secondary: #10b981; /* Success Green */
-        }
-
-        /* TIP 3: Smooth scrolling for better UX */
-        html {
-            scroll-behavior: smooth;
+            --bg: #020c1b;
+            --navy-blue: #0a192f;
+            --accent: #38bdf8;
+            --text: #ccd6f6;
+            --dark-slate: #112240;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, sans-serif;
             margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 2px solid var(--accent);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .badge {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            border: 1px solid var(--accent);
-        }
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            color: var(--accent);
-            border-left: 4px solid var(--accent);
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease; /* Smooth transition for hover */
-            border: 1px solid transparent;
-        }
-
-        /* TIP 4: Interactive Hover State */
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            background-color: #1e2e4a;
-            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
-        }
-
-        .skill-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style: none;
-            padding: 0;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .skill-item {
-            background: #334155;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.85rem;
+        .dashboard {
+            width: 90%;
+            max-width: 1000px;
+            background: var(--navy-blue);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            overflow: hidden;
         }
 
-        /* TIP 1: Blinking Cursor Animation */
-        .cursor {
-            display: inline-block;
+        /* Top Bar / Header */
+        .terminal-top {
+            background: #1e293b;
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-light {
             width: 10px;
-            background-color: var(--accent);
-            margin-left: 5px;
-            animation: blink 1s infinite;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--accent);
         }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: #0f172a;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            color: var(--text);
+            cursor: pointer;
+            font-family: monospace;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--dark-slate);
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        /* Content Areas */
+        .content-section {
+            padding: 30px;
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Interactive Accordion (Expandable Sections) */
+        details {
+            background: var(--dark-slate);
+            margin-bottom: 15px;
+            border-radius: 4px;
+            padding: 10px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        details[open] { border-color: var(--accent); }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--accent);
+            list-style: none;
+            outline: none;
+        }
+
+        summary::before { content: "[+] "; font-family: monospace; }
+        details[open] summary::before { content: "[-] "; }
+
+        .details-body {
+            padding: 15px 5px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(56, 189, 248, 0.1);
+            margin-top: 10px;
+        }
+
+        .badge-row { margin-top: 10px; }
+        .badge {
+            border: 1px solid var(--accent);
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            margin-right: 5px;
+            border-radius: 3px;
         }
 
         footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--card-bg);
-        }
-
-        a {
+            padding: 10px 25px;
+            font-size: 0.7rem;
+            background: #0f172a;
             color: var(--accent);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            text-align: right;
+            border-top: 1px solid rgba(56, 189, 248, 0.1);
         }
     </style>
 </head>
 <body>
 
-<div style="position: fixed; top: 10px; right: 10px; font-family: monospace; font-size: 0.7rem; color: rgba(56, 189, 248, 0.1); pointer-events: none; z-index: 1000;">
-    STATUS: UNDERGRAD STUDENT // RESEARCH ASSISTANT
-</div>
+<div class="dashboard">
+    <div class="terminal-top">
+        <div>
+            <span class="status-light"></span>
+            <span style="margin-left:10px; font-weight: bold; letter-spacing: 1px;">MATTHEW LOUIE // SYSTEMS INTERFACE</span>
+        </div>
+        <div style="font-size: 0.8rem; font-family: monospace;">AUTH: NAVY-IT2-E5</div>
+    </div>
 
-<header>
-    <h1>Matthew Louie</h1>
-    <p>Undergraduate Research Assistant | Information Systems Technician<span class="cursor">&nbsp;</span></p>
-    
-    <div style="margin-top: 1rem; position: relative;">
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'bio')">01. OVERVIEW</button>
+        <button class="tab-btn" onclick="openTab(event, 'navy')">02. NAVY OPS</button>
+        <button class="tab-btn" onclick="openTab(event, 'research')">03. RESEARCH</button>
+        <button class="tab-btn" onclick="openTab(event, 'contact')">04. CONNECT</button>
+    </nav>
+
+    <div id="bio" class="content-section active">
+        <h2>System Summary</h2>
+        <p>I am an IT Operations Lead and Undergraduate Researcher bridging the gap between <span style="color:var(--accent)">Enterprise Security</span> and <span style="color:var(--accent)">Neuroscience Health Informatics</span>.</p>
+        
         <details>
-            <summary class="badge" style="cursor: pointer;">B.S. Information Systems [View Details]</summary>
-            <div class="details-content">
-                <strong style="color: var(--accent);">Academic Focus:</strong>
-                <ul>
-                    <li>Systems Analysis & Design</li>
-                    <li>Business Database Management</li>
-                    <li>SQL Learning and Process Management</li>
-                    <li>Cyber Security</li>
-                </ul>
+            <summary>Academic Credentials</summary>
+            <div class="details-body">
+                Currently pursuing a B.S. in Information Systems with a focus on Business Systems and Healthcare Data Integration.
+            </div>
+        </details>
+    </div>
+
+    <div id="navy" class="content-section">
+        <h2>Military Experience // E-5</h2>
+        <div class="badge-row">
+            <span class="badge">SPACECOM Support</span>
+            <span class="badge">Classified Comms</span>
+            <span class="badge">Fiber Infrastructure</span>
+        </div>
+        <p style="margin-top:20px;">Operational lead for mission-critical network environments.</p>
+        
+        <details>
+            <summary>Infrastructure Rollout Project</summary>
+            <div class="details-body">
+                Oversaw hardware logistics and fiber optic cabling for 150+ personnel. Coordinated with department heads to ensure 100% operational readiness during hardware migration.
             </div>
         </details>
 
-        <span class="badge">Neuroscience Research</span>
+        <details>
+            <summary>SECURE VTC / COMMS</summary>
+            <div class="details-body">
+                Maintained high-availability Video Teleconferencing suites across SIPR/NIPR networks. Monitored secure enterprise systems for Space Command (SPACECOM) operations.
+            </div>
+        </details>
     </div>
-</header>
 
-<div class="container">
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am an undergraduate researcher focused on the application of AI learning tools to detect and apply solutions to those with mental health disorders and poor sleep schedules. 
-            With a background in Cybersecurity and Information Systems, I apply an 
-            analytical mindset to research methodologies, ensuring data integrity and strong
-            experimental frameworks.
-        </p>
-    </section>
+    <div id="research" class="content-section">
+        <h2>Informatics & AI Research</h2>
+        <p>Analyzing the intersection of biological sleep patterns and mental health through AI frameworks.</p>
 
-    <section id="research">
-        <h2>Current Research</h2>
-        <div class="card">
-            <h3>Project: AI-Driven Correlation Between Sleep Cycles & Mental Health</h3>
-            <p>My research focuses on tracking REM and NREM sleep cycles to detect and analyze mental health disorders, utilizing Machine Learning models to assist in diagnostic frameworks.</p>
-            <ul class="skill-list">
-                <li class="skill-item">Research Development</li>
-                <li class="skill-item">Data Privacy</li>
-                <li class="skill-item">Machine Learning</li>
-            </ul>
-        </div>
-    </section>
+        <details>
+            <summary>AI Sleep Correlation Study</summary>
+            <div class="details-body">
+                Developing Python scripts and leveraging Local LLMs to analyze REM/NREM cycles. Goal: Identify neurological biomarkers for mental health diagnosis.
+            </div>
+        </details>
 
-    <section id="skills">
-        <h2>Technical Skills</h2>
-        <div class="card">
-        <p><strong>Practical:</strong> Policy Enforcement, Server Troubleshooting, Research Skills.</p>
-            <p><strong>Development:</strong> Python, PowerShell, Bash Scripting.</p>
-            <p><strong>Environment:</strong> Linux (WSL), Windows Enterprise.</p>
-        </div>
-    </section>
+        <details>
+            <summary>Technical Stack</summary>
+            <div class="details-body">
+                - Python / Bash Automation<br>
+                - Local LLM Deployment (WSL/Linux)<br>
+                - Data Privacy Protocols
+            </div>
+        </details>
+    </div>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Interested in collaborating or discussing research? Reach out via the links below:</p>
-        <p>
-            Email: <a href="mailto:mlouie1@asu.edu">mlouie1@asu.edu</a> | 
-            <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank">GitHub</a>
-        </p>
-    </section>
+    <div id="contact" class="content-section">
+        <h2>Establish Connection</h2>
+        <p>Protocol: [SMTP/HTTPS]</p>
+        <p>Email: <a href="mailto:mlouie1@asu.edu" style="color:var(--accent)">mlouie1@asu.edu</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank" style="color:var(--accent)">Profile Link</a></p>
+        <p>GitHub: <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank" style="color:var(--accent)">Repository</a></p>
+    </div>
 
+    <footer>
+        SYSTEM UPTIME: 99.99% // MATTHEW LOUIE PROFESSIONAL
+    </footer>
 </div>
 
-<footer>
-    [STATUS: ONLINE] // &copy; 2026 Matthew Louie. Built for Academic Research.
-</footer>
+<script>
+    function openTab(evt, tabName) {
+        var i, content, tablinks;
+        content = document.getElementsByClassName("content-section");
+        for (i = 0; i < content.length; i++) {
+            content[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
 
 </body>
 </html>
