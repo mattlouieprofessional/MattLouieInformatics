@@ -1,207 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matthew Louie | Interface</title>
-    <style>
-        :root {
-            --bg: #010811;
-            --navy: #0a192f;
-            --accent: #38bdf8;
-            --text: #e6f1ff;
-            --card: #112240;
-        }
-
-        * { box-sizing: border-box; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        body, html {
-            height: 100%; margin: 0; background-color: var(--bg);
-            color: var(--text); font-family: 'Inter', sans-serif; overflow: hidden;
-            /* The Interactive Moving Grid */
-.bg-grid {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%; /* Extra width for the movement */
-    height: 200%;
-    background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    z-index: -1; /* Puts it behind everything */
-    transform: perspective(500px) rotateX(60deg);
-    animation: grid-travel 20s linear infinite;
-}
-
-@keyframes grid-travel {
-    from { background-position: 0 0; }
-    to { background-position: 0 40px; }
-}
-
-/* Optional: Add a "Scanline" effect for that 
-   Space Command / Retro IT look */
-body::after {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-    z-index: 999; /* Top layer, but transparent */
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none; /* So you can still click the buttons! */
-}
-        }
-
-        /* PAGE 1: SPLASH */
-        #splash {
-            height: 100vh; width: 100vw; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; position: fixed;
-            top: 0; left: 0; z-index: 100; background: var(--bg);
-        }
-
-        /* PAGE 2: DASHBOARD */
-        #main-dashboard {
-            height: 100vh; width: 100vw; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; position: fixed;
-            top: 0; left: 0; z-index: 50; background: var(--bg);
-            transform: translateY(100%); /* Start off-screen at bottom */
-        }
-
-        /* Transition Trigger - Moves splash up, pulls dashboard up */
-        .unlocked #splash { transform: translateY(-100%); }
-        .unlocked #main-dashboard { transform: translateY(0); }
-
-        .intro-box { text-align: center; border-left: 3px solid var(--accent); padding: 10px 30px; }
-        h1 { font-size: 3rem; margin: 0; }
-
-        .grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 15px; width: 90%; max-width: 600px;
-        }
-
-        .box {
-            background: var(--card); border: 1px solid var(--navy); border-radius: 4px;
-            padding: 30px 10px; cursor: pointer; text-align: center; font-family: monospace;
-        }
-
-        .box:hover { border-color: var(--accent); background: var(--navy); }
-
-        /* PROJECT SUB-SCREENS */
-        .sub-screen {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); z-index: 200; padding: 40px 20px; flex-direction: column; align-items: center;
-        }
-
-        .detail-card {
-            background: #0a192f; border-left: 4px solid var(--accent);
-            padding: 20px; margin-top: 20px; width: 100%; max-width: 600px;
-            display: none; 
-        }
-
-        .back-btn { color: var(--accent); cursor: pointer; margin-bottom: 20px; font-family: monospace; }
-        .swipe-hint { position: absolute; bottom: 40px; color: var(--accent); cursor: pointer; font-family: monospace; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Louie | Healthcare Informatics & Military Veteran</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body id="main-body">
-<div class="bg-grid"></div>
-    <section id="splash">
-        <div class="intro-box">
-            <h1>MATTHEW LOUIE</h1>
-            <div style="color: var(--accent); font-family: monospace;">UNDERGRADUATE RESEARCHER || IT SPECIALIST</div>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-brand">Matthew Louie</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#pillars">Core Focus</a>
+      <a href="#experience">Experience</a>
+      <a href="#honors">Accomplishments</a>
+      <a href="#contact" class="btn-nav">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero reveal">
+      <div class="hero-content">
+        <span class="badge">Student Veteran • Healthcare Informatics • Leadership</span>
+        <h1>Bridging high-impact military technology with clinical health systems.</h1>
+        <p>
+          Student veteran with 5+ years in informatics, leading critical technical deployments 
+          and biomedical data initiatives across defense environments and clinical research partners.
+        </p>
+        <div class="hero-cta">
+          <a href="#experience" class="btn btn-primary">Explore Background</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
         </div>
-        <div class="swipe-hint" onclick="unlock()"><Strong>CLICK HERE</Strong></div>
+      </div>
     </section>
 
-    <section id="main-dashboard">
-        <h2 style="font-family: monospace; margin-bottom: 30px;">DASHBOARD</h2>
-        <div class="grid">
-            <div class="box" onclick="openSub('navy-sub')">NAVY CAREER</div>
-            <div class="box" onclick="openSub('res-sub')">RESEARCH</div>
-            <div class="box" onclick="openSub('edu-sub')">EDUCATION</div>
-            <div class="box" onclick="openSub('con-sub')">CONTACT ME</div>
+    <!-- Key Pillars (Military, Leadership, Medical) -->
+    <section id="pillars" class="pillars-section reveal">
+      <div class="section-title">
+        <h2>Core Highlights</h2>
+        <div class="title-underline"></div>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🎖️</div>
+          <h3>Military Operations</h3>
+          <p>
+            Served as an Information Systems Technician (E-5) in the U.S. Navy Reserves, maintaining strict operational security, multi-unit communication, and zero-breach protocol compliance.
+          </p>
         </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">🏥</div>
+          <h3>Medical Informatics</h3>
+          <p>
+            Supervised network rollouts for the Defense Health Agency's MHS Genesis platform with the Joint Medical Group, Guantanamo Bay, securing seamless healthcare logistics and clinical uptime.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon">🔬</div>
+          <h3>Research & Leadership</h3>
+          <p>
+            Undergraduate researcher at ASU SCAI driving computational workflows for AI systems in partnership with clinical institutions including Mayo Clinic and HonorHealth.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <div id="navy-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('navy-sub')">← RETURN TO HOMESCREEN</div>
-        <div class="grid">
-            <div class="box" onclick="showDetail('n1')">IT HELPDESK LEAD</div>
-            <div class="box" onclick="showDetail('n2')">MHS OPERATIONS MANAGER</div>
-            <div class="box" onclick="showDetail('n3')">SPACECOM Technician</div>
-        </div>
-        <div id="n1" class="detail-card">Served as the Lead Technician for a 150-person department, overseeing cross-departmental support and ensuring 100% mission-critical system uptime.</div>
-        <div id="n2" class="detail-card">Served as the operations manager for a MHS Network rollout. Duties included establishing relationships amongst departments and providing technical expertise to leaders as an advisory role. Managed over the logistics and coordination of phycial hardware. Successfully led team to ensure 100% uptime during mission critical operations.</div>
-        <div id="n3" class="detail-card">Monitored classified systems for SPACECOM operations. Worked as a deskside technician to monitor, track, and report on mission critical operations.</div>
-    </div>
+    <!-- Interactive Experience Section (Click-to-Expand Accordions) -->
+    <section id="experience" class="experience-section reveal">
+      <div class="section-title">
+        <h2>Detailed Experience</h2>
+        <p class="subtitle">Click any role to expand mission details and accomplishments.</p>
+        <div class="title-underline"></div>
+      </div>
 
-    <div id="res-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('res-sub')">← RETURN TO HOMESCREEN</div>
-        <div class="grid">
-            <div class="box" onclick="showDetail('r1')">NEURO-MENTAL HEALTH RESEARCH</div>
-            <div class="box" onclick="showDetail('r2')">IMPACT LAB</div>
+      <div class="accordion-container">
+        <!-- Item 1: JTF Medical -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="role-title">IT Operations Manager • Joint Medical Group</span>
+            <span class="role-meta">Guantanamo Bay, Cuba | 2023 – 2024</span>
+            <span class="toggle-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="inner-content">
+              <span class="highlight-tag">Medical & Defense Leadership</span>
+              <ul>
+                <li>Supervised the network and systems deployment for the Defense Health Agency’s premier electronic health records platform, MHS Genesis.</li>
+                <li>Directed logistical and health informatics equipment pipelines to guarantee 100% mission readiness for clinical care delivery.</li>
+                <li>Awarded the Navy and Marine Corps Achievement Medal (NAM) and Flag Letter of Commendation (FLOC) for zero-downtime execution.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div id="r1" class="detail-card">Currently conducting research on the correlation between mental health disorders and sleep schedules. More specifically, I am focused on tracking REM and NREM sleep cycles to be able to analyze and diagnose issues accossiated with sleep. I am currently building a machine learning model to help explore and utilize AI models to advance research knowledge and provide solutions to pre-diagnose conditions in patients.</div>
-        <div id="r2" class="detail-card">Working with Dr. Sandeep Gupta in the IMPACT LAB at School of Computing and Augmented Intelligence at Arizona State University.</div>
-    </div>
 
-   <div id="edu-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('edu-sub')">← RETURN TO HOMESCREEN</div>
-        <h2 style="font-family: monospace;">Academic Information</h2>
-        <div class="grid">
-            <div class="box" onclick="showDetail('e1')">BACHELORS</div>
-            <div class="box" onclick="showDetail('e2')">OTHER EDUCATION</div>
+        <!-- Item 2: SCAI Research -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="role-title">Undergraduate Researcher • SCAI ASU</span>
+            <span class="role-meta">Tempe, AZ | 2025 – Present</span>
+            <span class="toggle-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="inner-content">
+              <span class="highlight-tag">Computational Healthcare Systems</span>
+              <ul>
+                <li>Conducting computational modeling and framework engineering to advance applied Artificial Intelligence systems.</li>
+                <li>Performing data and computational analysis collaborating with healthcare partners including Mayo Clinic, HonorHealth, and NVIDIA.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div id="e1" class="detail-card">
-            <strong>B.S. Computer Information Systems</strong> Pursuing degree at ASU W.P. Carey School of Business. Focusing on the intersection of business logic and complex IT infrastructure.
+
+        <!-- Item 3: US Navy Reserve -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="role-title">Information Systems Technician • U.S. Navy Reserve</span>
+            <span class="role-meta">Glendale, AZ | June 2021 – Present</span>
+            <span class="toggle-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="inner-content">
+              <span class="highlight-tag">Defense Information Security</span>
+              <ul>
+                <li>Provided critical technical infrastructure and IT operations support to over 500 personnel across 4 operational units.</li>
+                <li>Managed sensitive communications and operations under stringent TS/SCI protocol, maintaining a 100% compliance record.</li>
+                <li>Maintained 100+ community service hours each academic year in community and base volunteerism.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div id="e2" class="detail-card">
-            <strong>Certificate: Applied Business Database Analytics</strong> Specialized coursework in data integrity, business processes, and systems analysis.
+
+        <!-- Item 4: ASU Helpdesk -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="role-title">Information Helpdesk Technician • Arizona State University</span>
+            <span class="role-meta">Tempe, AZ | Nov 2024 – Present</span>
+            <span class="toggle-icon">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="inner-content">
+              <span class="highlight-tag">Enterprise System Support</span>
+              <ul>
+                <li>Resolved 250+ ServiceNow service issues across 2 academic colleges with cross-platform diagnostics (Windows, macOS, Linux).</li>
+                <li>Delivered essential server support, proactively mitigating potential interruptions and maintaining service continuity.</li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <div id="con-sub" class="sub-screen">
-        <div class="back-btn" onclick="closeSub('con-sub')">← RETURN TO HOMESCREEN</div>
-        <h2 style="font-family: monospace;">I am always looking to connect with new individauls! Use the links below to connect:</h2>
-        <div class="grid">
-            <a href="mailto:mlouie1@asu.edu" target="_blank" class="box" style="text-decoration: none;"><strong>EMAIL</strong></a>
-            <a href="https://www.linkedin.com/in/matthewlouieprofessional/" target="_blank" class="box" style="text-decoration: none;"><strong>LINKEDIN</strong></a>
-            <a href="https://github.com/mattlouieprofessional/MattLouieInformatics" target="_blank" class="box" style="text-decoration: none;"><strong>GITHUB</strong></a>
+    <!-- Accomplishments & Education -->
+    <section id="honors" class="grid-two-col reveal">
+      <div class="card-box">
+        <h3>Honors & Clearance</h3>
+        <ul class="custom-list">
+          <li><strong>DOD TS/SCI Clearance + NCIS CI Polygraph</strong> (Issued Sept 2021)</li>
+          <li><strong>Navy and Marine Corps Achievement Medal (NAM)</strong> (Joint Task Force GTMO)</li>
+          <li><strong>Flag Letter of Commendation (FLOC)</strong> (MHS Genesis deployment)</li>
+          <li><strong>Letter of Appreciation</strong> (Class Lead, Information Systems Technician "A" School)</li>
+        </ul>
+      </div>
+
+      <div class="card-box">
+        <h3>Academic Credentials</h3>
+        <ul class="custom-list">
+          <li>
+            <strong>B.S. in Computer Information Systems</strong><br>
+            W. P. Carey School of Business, ASU (Expected Dec 2026)
+          </li>
+          <li>
+            <strong>Certificate in Applied Business Data Analytics</strong><br>
+            W. P. Carey School of Business, ASU (Expected Dec 2026)
+          </li>
+          <li>
+            <strong>Community Engagement:</strong> American Red Cross Volunteer (Guantanamo Bay)
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section reveal">
+      <div class="contact-card">
+        <h2>Initiate Contact</h2>
+        <p>Open to discussions regarding health informatics research, clinical workflows, and technology modernization.</p>
+        <div class="contact-links">
+          <!-- Replace your-custom-handle with your exact vanity URL slug -->
+          <a href="https://linkedin.com/in/your-custom-handle" target="_blank" rel="noopener noreferrer" class="contact-btn">
+            LinkedIn Profile
+          </a>
+          <a href="mailto:mattklouie@gmail.com" class="contact-btn primary-btn">
+            mattklouie@gmail.com
+          </a>
         </div>
-        <div style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6; font-family: monospace;">
-             SELECT AN OPTION TO OPEN LINK 
-        </div>
-    </div>
+        <p class="location-tag">📍 Tempe, Arizona</p>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // FIXED UNLOCK FUNCTION
-        function unlock() {
-            document.getElementById('main-body').classList.add('unlocked');
-        }
+  <footer>
+    <p>&copy; 2026 Matthew Louie • Earth & Cedar Theme</p>
+  </footer>
 
-        // SWIPE DETECTION
-        let startY;
-        document.addEventListener('touchstart', e => startY = e.touches[0].pageY);
-        document.addEventListener('touchend', e => {
-            if(startY - e.changedTouches[0].pageY > 50) unlock();
-        });
-
-        // SUB-MENU NAVIGATION
-        function openSub(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeSub(id) { 
-            document.getElementById(id).style.display = 'none';
-            document.querySelectorAll('.detail-card').forEach(d => d.style.display = 'none');
-        }
-
-        // PROJECT DETAILS
-        function showDetail(id) {
-            document.querySelectorAll('.detail-card').forEach(d => d.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
